@@ -54,7 +54,8 @@ async def predict(file: UploadFile = File(...)):
 
     prob = float(prediction[0][0])
     label = 1 if prob > 0.5 else 0
-
+    print("probability : {prob}")
+    print("label: {label}")
     return {
         "probability": prob,
         "class": label
