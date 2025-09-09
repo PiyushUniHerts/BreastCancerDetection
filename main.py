@@ -5,6 +5,7 @@ from tensorflow.keras.applications.densenet import preprocess_input
 from tensorflow.keras.preprocessing import image
 import uvicorn
 import io
+import os 
 from PIL import Image
 
 # ==============================
@@ -24,7 +25,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],  # frontend URL
+    allow_origins=["*"],  # frontend URL
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"]
@@ -36,7 +37,7 @@ app.add_middleware(
 # ==============================
 def preprocess_img(file_bytes):
     img = Image.open(io.BytesIO(file_bytes)).convert("RGB")
-    img = img.resize(50,50)  # resize to model input
+    img = img.resize((50,50))  # resize to model input
     img_array = image.img_to_array(img)
     img_array = np.expand_dims(img_array, axis=0)  # (1,h,w,3)
     img_array = preprocess_input(img_array)
