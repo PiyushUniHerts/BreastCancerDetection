@@ -2,7 +2,6 @@ opencv-python
 tensorflow
 fastapi
 uvicorn
-io
 pil
 pandas
 numpy
