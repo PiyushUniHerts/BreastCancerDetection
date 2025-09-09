@@ -49,7 +49,7 @@ def preprocess_img(file_bytes):
 @app.post("/predict")
 async def predict(file: UploadFile = File(...)):
     contents = await file.read()
-    img_array = preprocess_img(contents)
+    img_array = preprocess_img(contents).astype("float32")
     prediction = model.predict(img_array)
 
     prob = float(prediction[0][0])
