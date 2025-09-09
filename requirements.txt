@@ -4,4 +4,4 @@ fastapi
 uvicorn
 pandas
 numpy
-python-multiport
+python-multipart
